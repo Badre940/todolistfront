@@ -1,0 +1,65 @@
+.container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    align-items: center;
+}
+
+
+.mainBox{
+    background-color:#1B1A41 ;
+     width: 25%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border-radius: 5px;
+     height: 400px;
+     gap: 3em;
+}
+.searchInput{
+    
+    font-size: 0.9rem;
+width: 100%;
+     height:100%;
+     background: none;
+     padding: 10px;
+     color: whitesmoke;
+}
+.mainTitle{
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 2em;
+    padding-top: 15px;
+}
+.searchBar{
+    border: 1px solid #845AFC;
+  display: flex;
+  align-items: center;
+ width: 80%;
+ border-radius: 3px;
+  
+}
+.todobtn{
+    background: #8758ff;
+    color: #fff;
+    border: none;
+    width: 30%;
+    cursor: pointer;
+    font-size: 0.9rem;
+  height: 100%;
+}
+.todolist{
+    overflow: hidden;
+}
+.todo{
+    background-color:#845AFC ;
+    padding: 10px;
+   display: flex;
+   justify-content: space-between;
+   border-radius: 3px;
+   height: 50px;
+   width: 400px;
+   align-items: center;
+   color: whitesmoke;
+   font-size: 1.2em;
+}
