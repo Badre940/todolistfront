@@ -5,7 +5,7 @@ import Todo from './Todo';
 const HomePage = () => {
   return (
     <div className="bodyBackground min-h-screen">
-     <NavBar />
+
       <main>
         <Todo />
       </main>

@@ -1,7 +1,7 @@
 import axiosInstance from "../api/axiosInstance";
 
 const login = (dataLogin) => {
-  return axiosInstance.post("/login", dataLogin);
+  return axiosInstance.post("/login", dataLogin); // requête post vers le back
 };
 
 const profile = () => {
@@ -13,34 +13,33 @@ const profile = () => {
       },
     });
   }
-  return Promise.reject('localStorage is not available');
 };
 
 const saveToken = (token) => {
   if (typeof window !== 'undefined') {
-    localStorage.setItem("token", token);
+    localStorage.setItem("token", token); // enregistrer le token dans le localStorage
   }
 };
 
 const logout = () => {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem("token");
+    localStorage.removeItem("token"); // supprimer le token du localStorage
   }
 };
 
 const isLogged = () => {
   if (typeof window !== 'undefined') {
-    const token = localStorage.getItem("token");
-    return !!token;
+    let token = localStorage.getItem("token"); // récupérer le token du localStorage
+    return !!token; /* convertir en booléen */
   }
-  return false;
+  return false; // retourner false si localStorage n'est pas défini
 };
 
 const getToken = () => {
   if (typeof window !== 'undefined') {
-    return localStorage.getItem("token");
+    return localStorage.getItem("token"); // récupérer le token du localStorage
   }
-  return null;
+  return null; // retourner null si localStorage n'est pas défini
 };
 
 const accountService = {

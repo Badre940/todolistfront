@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import styles from "@/styles/login.module.css";
 import  accountService  from '../_services/account.services';
 import { Form , Button } from "semantic-ui-react";
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 
 const Login = () => {
+  const router = useRouter();
  // Initialisez navigate en utilisant useNavigate
     const [dataLogin, setdataLogin] = useState({
         email: "",
@@ -13,15 +14,17 @@ const Login = () => {
     });
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
+        //e.preventDefault();
+        router.push('/');
         accountService
             .login(dataLogin)
             .then((res) => {
                 accountService.saveToken(res.data.token);
                 Cookies.set('your_auth_token', res.data.token, {
                     expires: new Date(res.data.expiresIn),
+                    
                 });
-               
+                window.location.reload();
                 console.log(res.data);
             })
             .catch((err) => {

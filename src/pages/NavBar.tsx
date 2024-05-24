@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import  accountService  from '../_services/account.services';
+import { useRouter } from 'next/router';
+import accountService from '../_services/account.services';
 
 const NavBar = () => {
+  const router = useRouter();
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    setIsLogged(accountService.isLogged());
+  }, []);
+
   const logout = () => {
-    localStorage.removeItem("token");
     accountService.logout();
-    window.location.href = '/login'; // Rediriger directement vers /login
+    router.push('/'); // Rediriger vers /
+    window.location.reload();
   };
 
   return (
@@ -21,7 +29,7 @@ const NavBar = () => {
         </ul>
       </nav>
       <div className='flex gap-4 items-center'>
-        {!accountService.isLogged() && (
+        {!isLogged && (
           <>
             <Link href="/Login">
               <button className='rounded-md border-2 p-2 text-white'>LOGIN</button>
@@ -31,11 +39,8 @@ const NavBar = () => {
             </Link>
           </>
         )}
-        {accountService.isLogged() && (
-          <>
-            <Link href="/">
-            <button className='text-white' onClick={logout}>LOGOUT</button></Link>
-          </>
+        {isLogged && (
+          <button className='text-white' onClick={logout}>LOGOUT</button>
         )}
       </div>
     </header>

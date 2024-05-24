@@ -2,9 +2,11 @@ import React from 'react'
 import styles from "@/styles/signup.module.css"
 import { useState } from "react";
 import axiosInstance from '../api/axiosInstance';
+import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import { Form , Button, FormField, Checkbox } from "semantic-ui-react";
 const Signup = () => {
+  const router = useRouter();
     const [dataSignup, setdataSignup] = useState({
         email: "",
         password: "",
@@ -12,13 +14,13 @@ const Signup = () => {
 
       const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-      
+        router.push('/Login');
         axiosInstance
           .post('/signup', dataSignup)
           .then((res) => {
             Cookies.set('your_auth_token', res.data.token, { expires: 1 });
-         
-            console.log(res.data.message);
+            window.location.reload();
+            
           })
           .catch((err) => {
             console.log(err);
